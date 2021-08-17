@@ -32,15 +32,18 @@ class Home extends Component {
     loadCityListData = async () => {
         let response = await getCitylistData();
         console.log(response)
+        console.log(response.data.data)
 
-        let topCity = response.data.data[0].city;
+        if (response.data.data.length > 0) {
+            let topCity = response.data.data[0].city;
 
-        this.setState({
-            cityListData: response.data.data,
-            selectedCity: topCity
-        })
+            this.setState({
+                cityListData: response.data.data,
+                selectedCity: topCity
+            })
 
-        this.showDetailedData(topCity)
+            this.showDetailedData(topCity)
+        }
     }
 
     showDetailedData = async (city) => {
